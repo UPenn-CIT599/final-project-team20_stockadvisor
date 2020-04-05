@@ -9,7 +9,9 @@ public class ARIMAAnalysis {
     /**
      * This method builds a model and runs the ARIMA analysis
      */
-    public void runARIMA() {
+    public double runARIMA() {
+        double forcast = 0;
+        return forcast;
 
     }
 }
