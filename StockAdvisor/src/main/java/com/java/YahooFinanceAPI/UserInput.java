@@ -1,9 +1,12 @@
 package com.java.YahooFinanceAPI;
 
+import java.util.*;
+
 /**
  * This method gets the user input which is necessary for data processing.
  */
 public class UserInput {
+    private Scanner s = new Scanner(System.in);
     /**
      * This method reads the stock symbol from user input.
      * 
@@ -11,7 +14,7 @@ public class UserInput {
      */
     public String readStockTickerSymbol() {
         String stockSymbol = "";
-
+        stockSymbol = s.next();
         return stockSymbol;
     }
 
@@ -23,7 +26,7 @@ public class UserInput {
      */
     public String readDateRange() {
         String date = "";
-
+        date = s.next();
         return date;
     }
 
@@ -35,6 +38,7 @@ public class UserInput {
      */
     public String readInvestmentHorizon() {
         String horizon = "";
+        horizon  = s.next();
         return horizon;
     }
 
