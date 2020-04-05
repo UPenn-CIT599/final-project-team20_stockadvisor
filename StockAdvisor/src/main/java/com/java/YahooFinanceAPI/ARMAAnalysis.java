@@ -8,7 +8,9 @@ public class ARMAAnalysis {
     /**
      * This method builds a model and runs the ARMA analysis
      */
-    public void runARMA() {
+    public double runARMA() {
+        double forcast = 0;
+        return forcast;
 
     }
 }
