@@ -1,4 +1,4 @@
-package com.java.yahoo.finance.api;
+package com.java.YahooFinanceAPI;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
