@@ -11,7 +11,6 @@ import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.histquotes.Interval;
 
-
 // User selection - Time series close price
 
 public class YahooStockAPI 
