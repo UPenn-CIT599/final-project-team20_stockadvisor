@@ -3,8 +3,7 @@ package com.java.YahooFinanceAPI;
 import java.io.IOException;
 import java.util.*;
 
-import yahoofinance.Stock;
-import yahoofinance.YahooFinance;
+import yahoofinance.*;
 import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.histquotes.Interval;
 
@@ -13,31 +12,61 @@ import yahoofinance.histquotes.Interval;
  * stores for further analysis
  */
 public class YahooFinanceDataReader {
+    private ArrayList<Double> historicalPrices;
+    
+    /**
+     * Constructs the data reader to pull stock data from Yahoo Finance
+     */
+    public YahooFinanceDataReader() {
+        historicalPrices = new ArrayList<Double>();
+    }
     /**
      * This method gets the stock object based on the symbol for data extraction from Yahoo Finance 
      * @param stockName Stock symbol
-     * @return Stock object
+     * @return Stock object for getting price information
      * @throws IOException
      */
     public Stock getStock(String stockName) throws IOException {
         return YahooFinance.get(stockName);
     }
 
-//    public static void main(String[] args) throws IOException {
-//        YahooFinanceDataReader yahooFinanceDataReader = new YahooFinanceDataReader();
-//        System.out.println(yahooFinanceDataReader.getStock("AAPL"));
-//
-//        Calendar from = Calendar.getInstance();
-//        Calendar to = Calendar.getInstance();
-//        from.add(Calendar.YEAR, -1); // from 1 year ago
-//
-//        Stock google = YahooFinance.get("GOOG");
-//        List<HistoricalQuote> googleHistQuotes = google.getHistory(from, to, Interval.DAILY);
-//        for (HistoricalQuote quote : googleHistQuotes) {
-//            String info = quote.toString();
-//            String adjPrice = info.substring(info.lastIndexOf("(") + 1, info.length() - 1);
-//            System.out.println(adjPrice);
-//        }
-//    }
+    /**
+     * This method stores historical stock close price to the historicalPrices ArrayList, for further data analysis
+     * @param stockName Symbol of the user selected stock
+     * @param numOfDays number of days, is 14 for short term analysis, and is 180 for long term analysis
+     * @throws IOException 
+     */
+    public void generatePriceList(String stockName, int numOfDays) throws IOException{
 
+        // to date is set as current date as default
+        Calendar from = Calendar.getInstance();
+        Calendar to = Calendar.getInstance();
+        from.add(Calendar.DATE, -numOfDays);
+
+        Stock stock = getStock(stockName);
+        List<HistoricalQuote> stockHistQuotes = stock.getHistory(from, to, Interval.DAILY);
+        for (HistoricalQuote quote : stockHistQuotes) {
+            String close = quote.getClose().toString();
+            double closePrice = Double.parseDouble(close);
+            historicalPrices.add(closePrice);
+        }
+    }
+    
+    /**
+     * This method gets the historicalPrices ArrayList used for data analysis
+     * @return historicalPrices ArrayList
+     */
+    public ArrayList<Double> getHistoricalPrices() {
+        return historicalPrices;
+    }
+
+//    public static void main(String[] args) throws IOException {
+//        YahooFinanceDataReader reader = new YahooFinanceDataReader();
+//        reader.generatePriceList("GOOGL", 180);
+//        ArrayList<Double> prices = reader.getHistoricalPrices();
+//        for (double price : prices) {
+//            System.out.println(price);
+//        }
+//        
+//    }
 }
