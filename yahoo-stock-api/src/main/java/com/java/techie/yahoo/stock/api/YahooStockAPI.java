@@ -11,7 +11,6 @@ import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.histquotes.Interval;
 
-
 // User selection - Time series close price
 
 public class YahooStockAPI 
@@ -25,11 +24,14 @@ public class YahooStockAPI
 		return dto;
 	}
 	
-	public List<HistoricalQuote> getHistory(String stockname) throws IOException{
+	public ArrayList<Double> getHistory(String stockname) throws IOException{
+	    ArrayList<Double> history = new ArrayList<Double>();
+	    double close;
 		Stock stock = YahooFinance.get(stockname);
 		List<HistoricalQuote> stockp = stock.getHistory();
-		for(HistoricalQuote quote:history) {
-			System.out.println(quote.getClose());
+		for(HistoricalQuote quote : stockp) {
+			close = Double.parseDouble(quote.getClose().toString());
+			history.add(close);
 		}
 		return history;
 		
@@ -43,7 +45,10 @@ public class YahooStockAPI
     {
     	YahooStockAPI yahooStockAPI = new YahooStockAPI();
     	System.out.println(yahooStockAPI.getStock("GOOG"));
-    	yahooStockAPI.getHistory("GOOG");
+    	ArrayList<Double> history = yahooStockAPI.getHistory("GOOG");
+    	for (Double price : history) {
+            System.out.println(price);
+        }
 
     }
 }
