@@ -18,6 +18,8 @@ public class ProgramRunner {
      * @param args
      */
     public static void main(String[] args) {
+        UserInterface user = new UserInterface();
+        user.createAndShowGUI();
 
     }
 }

@@ -19,14 +19,6 @@ public class UserInterface {
     }
 
     /**
-     * This method deals with function that asking user for the date range they
-     * would like the stock to be analyzed.
-     */
-    public void askDateRange() {
-
-    }
-
-    /**
      * This method deals with function that asking user to choose their investment
      * horizon. If the user choose "Long Term", ARMA analysis will be performed. If
      * the user choose "Short Term", ARIMA analysis will be performed.

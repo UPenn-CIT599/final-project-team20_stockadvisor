@@ -1,9 +1,12 @@
 package com.java.YahooFinanceAPI;
 
+import java.util.*;
+
 /**
  * This method gets the user input which is necessary for data processing.
  */
 public class UserInput {
+    private Scanner s = new Scanner(System.in);
     /**
      * This method reads the stock symbol from user input.
      * 
@@ -11,20 +14,15 @@ public class UserInput {
      */
     public String readStockTickerSymbol() {
         String stockSymbol = "";
-
+        stockSymbol = s.next();
+        YahooFinanceDataReader reader = new YahooFinanceDataReader();
+        try {
+            reader.getStock(stockSymbol);
+        }
+        catch (Exception e) {
+            System.out.println("Stock Symbol does not exist, please try again.");
+        }
         return stockSymbol;
-    }
-
-    /**
-     * This method reads the date range that the user would like to get the stock to
-     * be analyzed.
-     * 
-     * @return user selected date range
-     */
-    public String readDateRange() {
-        String date = "";
-
-        return date;
     }
 
     /**
@@ -35,6 +33,7 @@ public class UserInput {
      */
     public String readInvestmentHorizon() {
         String horizon = "";
+        horizon  = s.next();
         return horizon;
     }
 
