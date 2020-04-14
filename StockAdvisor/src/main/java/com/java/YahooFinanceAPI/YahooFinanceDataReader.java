@@ -13,7 +13,7 @@ import yahoofinance.histquotes.Interval;
  */
 public class YahooFinanceDataReader {
     private ArrayList<Double> historicalPrices;
-    private UserInput in;
+//    private UserInput in;
     private String stockName;
 
     /**
@@ -21,7 +21,7 @@ public class YahooFinanceDataReader {
      */
     public YahooFinanceDataReader() {
         historicalPrices = new ArrayList<Double>();
-        stockName = in.readStockTickerSymbol();
+//        stockName = in.readStockTickerSymbol();
     }
 
     /**
@@ -33,6 +33,7 @@ public class YahooFinanceDataReader {
      * @throws IOException
      */
     public Stock getStock(String stockName) throws IOException {
+        this.stockName = stockName;
         return YahooFinance.get(stockName);
     }
 
@@ -73,7 +74,8 @@ public class YahooFinanceDataReader {
 
 //    public static void main(String[] args) throws IOException {
 //        YahooFinanceDataReader reader = new YahooFinanceDataReader();
-//        reader.generatePriceList("GOOGL", 180);
+//        reader.getStock("GOOGL");
+//        reader.generatePriceList(180);
 //        ArrayList<Double> prices = reader.getHistoricalPrices();
 //        for (double price : prices) {
 //            System.out.println(price);

@@ -7,17 +7,17 @@ import java.util.*;
  * inputs
  */
 public class DataProcessor {
-    private YahooFinanceDataReader reader;
+//    private YahooFinanceDataReader reader;
     private ARIMAAnalysis AST;
     private ARMAAnalysis ALT;
-    private ArrayList<Double> prices;
+    private ArrayList<Double> prices = new ArrayList<Double>();
     private String recommendation;
 
     /**
      * Constructs data processor
      */
     public DataProcessor() {
-        prices = reader.getHistoricalPrices();
+//        prices = reader.getHistoricalPrices();
     }
 
     /**
