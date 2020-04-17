@@ -12,7 +12,8 @@ import yahoofinance.histquotes.Interval;
  * stores for further analysis
  */
 public class YahooFinanceDataReader {
-    private ArrayList<Double> historicalPrices;
+//    private ArrayList<Double> historicalPrices;
+//    private double[] historicalPrices;
 //    private UserInput in;
     private String stockName;
 
@@ -20,7 +21,7 @@ public class YahooFinanceDataReader {
      * Constructs the data reader to pull stock data from Yahoo Finance
      */
     public YahooFinanceDataReader() {
-        historicalPrices = new ArrayList<Double>();
+//        historicalPrices = new ArrayList<Double>();
 //        stockName = in.readStockTickerSymbol();
     }
 
@@ -47,7 +48,7 @@ public class YahooFinanceDataReader {
      *                  for long term analysis
      * @throws IOException
      */
-    public void generatePriceList(int numOfDays) throws IOException {
+    public double[] generatePriceList(int numOfDays) throws IOException {
 
         // to date is set as current date as default
         Calendar from = Calendar.getInstance();
@@ -56,11 +57,16 @@ public class YahooFinanceDataReader {
 
         Stock stock = getStock(stockName);
         List<HistoricalQuote> stockHistQuotes = stock.getHistory(from, to, Interval.DAILY);
+        double[] closePrices = new double[numOfDays];
+        int i = 0;
         for (HistoricalQuote quote : stockHistQuotes) {
             String close = quote.getClose().toString();
             double closePrice = Double.parseDouble(close);
-            historicalPrices.add(closePrice);
+            closePrices[i] = closePrice;
+            i++;
         }
+        
+        return closePrices;
     }
 
     /**
@@ -68,9 +74,9 @@ public class YahooFinanceDataReader {
      * 
      * @return historicalPrices ArrayList
      */
-    public ArrayList<Double> getHistoricalPrices() {
-        return historicalPrices;
-    }
+//    public ArrayList<Double> getHistoricalPrices() {
+//        return historicalPrices;
+//    }
 
 //    public static void main(String[] args) throws IOException {
 //        YahooFinanceDataReader reader = new YahooFinanceDataReader();
