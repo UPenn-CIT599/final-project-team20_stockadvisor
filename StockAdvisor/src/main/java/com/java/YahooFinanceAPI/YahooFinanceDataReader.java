@@ -57,15 +57,20 @@ public class YahooFinanceDataReader {
 
         Stock stock = getStock(stockName);
         List<HistoricalQuote> stockHistQuotes = stock.getHistory(from, to, Interval.DAILY);
-        double[] closePrices = new double[numOfDays];
-        int i = 0;
+        
+        ArrayList<Double> historicalPrices = new ArrayList<Double>();
+
         for (HistoricalQuote quote : stockHistQuotes) {
             String close = quote.getClose().toString();
-            double closePrice = Double.parseDouble(close);
-            closePrices[i] = closePrice;
-            i++;
+            double historicalPrice = Double.parseDouble(close);
+            historicalPrices.add(historicalPrice);
         }
         
+        int size = historicalPrices.size();
+        double[] closePrices = new double[size];
+        for (int i = 0; i < size; i++) {
+            closePrices[i] = historicalPrices.get(i);
+        }
         return closePrices;
     }
 
@@ -81,11 +86,8 @@ public class YahooFinanceDataReader {
 //    public static void main(String[] args) throws IOException {
 //        YahooFinanceDataReader reader = new YahooFinanceDataReader();
 //        reader.getStock("GOOGL");
-//        reader.generatePriceList(180);
-//        ArrayList<Double> prices = reader.getHistoricalPrices();
-//        for (double price : prices) {
-//            System.out.println(price);
-//        }
+//        double[] prices = reader.generatePriceList(180);
+//        System.out.println(Arrays.toString(prices));
 //        
 //    }
 }
