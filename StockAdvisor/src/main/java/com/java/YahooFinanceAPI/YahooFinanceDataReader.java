@@ -7,9 +7,8 @@ import yahoofinance.*;
 import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.histquotes.Interval;
 
-/**
- * This class gets stock data from Yahoo Finance using YahooFinanceAPI and
- * stores for further analysis
+/*
+ * This class gets stock price data from Yahoo Finance by requesting from YahooFinanceAPI and stores the daily closing price as an array for further analysis.
  */
 public class YahooFinanceDataReader {
 //    private ArrayList<Double> historicalPrices;
