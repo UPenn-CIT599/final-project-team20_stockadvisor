@@ -2,16 +2,13 @@ package com.java.YahooFinanceAPI;
 
 import com.github.signaflo.timeseries.TimeSeries;
 import com.github.signaflo.timeseries.forecast.Forecast;
-//import com.github.signaflo.timeseries.model.Model;
 import com.github.signaflo.timeseries.model.arima.Arima;
 import com.github.signaflo.timeseries.model.arima.ArimaOrder;
 
 import static com.github.signaflo.data.visualization.Plots.plot;
 
-import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TimeSeriesExample {
@@ -32,6 +29,7 @@ public class TimeSeriesExample {
         Scanner in2 = new Scanner(System.in);
         String termSelection = in2.nextLine();
         
+        
         if (termSelection.equals("S")) {
         	predictionDays = 14;
         }
@@ -40,7 +38,6 @@ public class TimeSeriesExample {
         }
         else {
         	System.out.println("incorrect input");
-        
         }
         
         double[] prices = reader.generatePriceList(predictionDays);
@@ -50,17 +47,12 @@ public class TimeSeriesExample {
         ArimaOrder modelOrder = ArimaOrder.order(0, 1, 1, 0, 1, 1); // Note that intercept fitting will automatically be turned off
         Arima model = Arima.model(series, modelOrder);
         
-        //System.out.println(model.aic()); // Get and display the model AIC
+        System.out.println(model.aic()); // Get and display the model AIC
         
-        System.out.println("LOL");
-        
-       // System.out.println(model.coefficients()); // Get and display the estimated coefficients
-        
-        System.out.println("LOL2");
+        System.out.println(model.coefficients()); // Get and display the estimated coefficients
         
         //System.out.println(java.util.Arrays.toString(model.stdErrors()));
         //plot(model.predictionErrors(), "Prediction Errors");
-        
         
         Forecast forecast = model.forecast(days); // To specify the alpha significance level, add it as a second argument.
         plot(forecast.pointEstimates(), "Price Change");
