@@ -13,6 +13,10 @@ import yahoofinance.histquotes.Interval;
 public class YahooFinanceDataReader {
 	
     private String stockName;
+    
+    //constructor
+    public YahooFinanceDataReader() {
+    }
 
     /**
      * This method gets the stock object based on the symbol for data extraction from Yahoo Finance

@@ -3,11 +3,11 @@ package com.java.YahooFinanceAPI;
 /**
  * This class runs the program.
  */
-public class ProgramRunner {
+public class retiredProgramRunner {
 
     /**
      * This method runs the stock advisor program
-     */
+     *
     public void runStockAdvisor() {
 
     }
@@ -16,10 +16,10 @@ public class ProgramRunner {
      * main method to run the program
      * 
      * @param args
-     */
+     *
     public static void main(String[] args) {
         UserInterface user = new UserInterface();
         user.createAndShowGUI();
 
-    }
+    }*/
 }
