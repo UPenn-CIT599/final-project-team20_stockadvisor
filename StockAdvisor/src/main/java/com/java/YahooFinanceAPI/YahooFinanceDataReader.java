@@ -11,22 +11,11 @@ import yahoofinance.histquotes.Interval;
  * This class gets stock price data from Yahoo Finance by requesting from YahooFinanceAPI and stores the daily closing price as an array for further analysis.
  */
 public class YahooFinanceDataReader {
-//    private ArrayList<Double> historicalPrices;
-//    private double[] historicalPrices;
-//    private UserInput in;
+	
     private String stockName;
 
     /**
-     * Constructs the data reader to pull stock data from Yahoo Finance
-     */
-    public YahooFinanceDataReader() {
-//        historicalPrices = new ArrayList<Double>();
-//        stockName = in.readStockTickerSymbol();
-    }
-
-    /**
-     * This method gets the stock object based on the symbol for data extraction
-     * from Yahoo Finance
+     * This method gets the stock object based on the symbol for data extraction from Yahoo Finance
      * 
      * @param stockName Stock symbol
      * @return Stock object for getting price information
@@ -44,7 +33,7 @@ public class YahooFinanceDataReader {
      * data.
      * 
      * @param numOfDays number of days, is 14 for short term analysis, and is 180
-     *                  for long term analysis
+     *        for long term analysis
      * @throws IOException
      */
     public double[] generatePriceList(int numOfDays) throws IOException {
@@ -72,21 +61,4 @@ public class YahooFinanceDataReader {
         }
         return closePrices;
     }
-
-    /**
-     * This method gets the historicalPrices ArrayList used for data analysis
-     * 
-     * @return historicalPrices ArrayList
-     */
-//    public ArrayList<Double> getHistoricalPrices() {
-//        return historicalPrices;
-//    }
-
-//    public static void main(String[] args) throws IOException {
-//        YahooFinanceDataReader reader = new YahooFinanceDataReader();
-//        reader.getStock("GOOGL");
-//        double[] prices = reader.generatePriceList(180);
-//        System.out.println(Arrays.toString(prices));
-//        
-//    }
 }

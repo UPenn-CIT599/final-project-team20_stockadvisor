@@ -12,15 +12,38 @@ import java.awt.List;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class TimeSeriesExample {
     
     public static void main(String[] args) throws IOException {
-     int days = 10;
+    	
+    	int days = 12;
+    	int predictionDays = 0;
         
-        YahooFinanceDataReader reader = new YahooFinanceDataReader();
-        reader.getStock("NKE");
-        double[] prices = reader.generatePriceList(180);
+        System.out.println("Please type a stock ticker: ");
+        Scanner in = new Scanner(System.in);
+        String stockTicker = in.nextLine();
+        
+        YahooFinanceDataReader reader = new YahooFinanceDataReader();        
+        reader.getStock(stockTicker);
+        
+        System.out.println("Type 'S' for short-term analysis or 'L' for long-term analysis: ");
+        Scanner in2 = new Scanner(System.in);
+        String termSelection = in2.nextLine();
+        
+        if (termSelection.equals("S")) {
+        	predictionDays = 14;
+        }
+        else if (termSelection.equals("L")) {
+        	predictionDays = 180;
+        }
+        else {
+        	System.out.println("incorrect input");
+        
+        }
+        
+        double[] prices = reader.generatePriceList(predictionDays);
 
         TimeSeries series = TimeSeries.from(prices);
 
@@ -37,8 +60,12 @@ public class TimeSeriesExample {
         
         System.out.println(java.util.Arrays.toString(model.stdErrors()));
         plot(model.predictionErrors(), "Prediction Errors");
+        
+        
         Forecast forecast = model.forecast(days); // To specify the alpha significance level, add it as a second argument.
         plot(forecast.pointEstimates(), "Price Change");
+        
+        
         TimeSeries FP = forecast.pointEstimates();
         double[] fprices = FP.asArray();
         System.out.println(java.util.Arrays.toString(fprices));
