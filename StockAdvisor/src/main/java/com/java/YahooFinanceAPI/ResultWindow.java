@@ -33,7 +33,7 @@ public class ResultWindow extends JFrame {
         contentPane.setLayout(null);
         
         JLabel lblNewLabel = new JLabel("New label");
-        lblNewLabel.setIcon(new ImageIcon(ResultWindow.class.getResource("/images/Picture3.jpg")));
+        lblNewLabel.setIcon(new ImageIcon(ResultWindow.class.getResource("/images/blue-and-yellow-graph-on-stock-market-monitor-159888.jpg")));
         lblNewLabel.setBounds(0, 0, 577, 166);
         contentPane.add(lblNewLabel);
         

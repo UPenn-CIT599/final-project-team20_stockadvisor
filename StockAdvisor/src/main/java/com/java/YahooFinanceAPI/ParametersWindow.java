@@ -1,31 +1,22 @@
 package com.java.YahooFinanceAPI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import java.awt.SystemColor;
-import javax.swing.JTextPane;
-import java.awt.Font;
-import javax.swing.BoxLayout;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import yahoofinance.Stock;
 
 public class ParametersWindow extends JFrame {
 
     private JPanel contentPane;
-    private JTextField textField;
+    private static JTextField textField;
     private final ButtonGroup buttonGroup = new ButtonGroup();
+    private static JRadioButton rdbtnShortTerm;
+    private static JRadioButton rdbtnLongTerm;
 
     /**
      * Launch the application.
@@ -76,7 +67,7 @@ public class ParametersWindow extends JFrame {
         contentPane.add(panelStep1);
         panelStep1.setLayout(null);
         
-        JLabel lblStep1 = new JLabel("Step 1: Please write down the ticker of the stock/ETF, then click the \"Check\" button.");
+        JLabel lblStep1 = new JLabel("Step 1: Please write down the ticker of the stock/ETF, click the \"Check\" button, and confirm your entry.");
         lblStep1.setFont(new Font("Tahoma", Font.PLAIN, 12));
         lblStep1.setBounds(0, 11, 604, 24);
         lblStep1.setVerticalAlignment(SwingConstants.TOP);
@@ -94,6 +85,46 @@ public class ParametersWindow extends JFrame {
         textField.setColumns(10);
         
         JButton btnCheckButton = new JButton("Check");
+        JOptionPane tickerOption = new JOptionPane();
+        btnCheckButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String stockTicker = textField.getText();
+                YahooFinanceDataReader reader = new YahooFinanceDataReader();
+                Stock stock;
+                try {
+                    stock = reader.getStock(stockTicker);
+                    if (stock == null) {
+                        tickerOption.showMessageDialog(tickerOption,
+                                "Stock/ETF Ticker is invalid. Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Error", 0);
+                    }
+                    else if (stock.isValid()) {
+                        String name = stock.getName();
+                        int answer = tickerOption.showConfirmDialog(tickerOption,
+                                "You have entered the ticker for \"" + name
+                                        + "\". Is that correct?",
+                                "Please confirm your selection", tickerOption.YES_NO_OPTION);
+                        if (answer == 0) {
+                            textField.setEditable(false);
+                            boolean tickerField = false;
+                        }
+                        else {
+                            textField.setText("");
+                            tickerOption.showMessageDialog(tickerOption,
+                                    "Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Reminder", 1);
+                        }
+                    }
+                    else {
+                        tickerOption.showMessageDialog(tickerOption,
+                                "Stock/ETF Ticker is invalid. Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Error", 0);
+                    }
+
+                }
+                catch (IOException e1) {
+                    tickerOption.showMessageDialog(tickerOption,
+                            "Stock/ETF Ticker is invalid. Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Error", 0);
+                }
+            }
+        });
         btnCheckButton.setBackground(Color.LIGHT_GRAY);
         btnCheckButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
         btnCheckButton.setBounds(246, 40, 89, 23);
@@ -115,13 +146,13 @@ public class ParametersWindow extends JFrame {
         lblTerm.setBounds(0, 35, 119, 14);
         panelStep2.add(lblTerm);
         
-        JRadioButton rdbtnShortTerm = new JRadioButton("Short Term");
+        rdbtnShortTerm = new JRadioButton("Short Term");
         rdbtnShortTerm.setFont(new Font("Tahoma", Font.PLAIN, 12));
         buttonGroup.add(rdbtnShortTerm);
         rdbtnShortTerm.setBounds(125, 30, 109, 23);
         panelStep2.add(rdbtnShortTerm);
         
-        JRadioButton rdbtnLongTerm = new JRadioButton("Long Term");
+        rdbtnLongTerm = new JRadioButton("Long Term");
         rdbtnLongTerm.setFont(new Font("Tahoma", Font.PLAIN, 12));
         buttonGroup.add(rdbtnLongTerm);
         rdbtnLongTerm.setBounds(236, 30, 109, 23);
@@ -139,16 +170,53 @@ public class ParametersWindow extends JFrame {
         panelStep3.add(lblStep3);
         
         JButton btnContinue = new JButton("Continue");
+        
         btnContinue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ResultWindow result = new ResultWindow();
-                result.setVisible(true);
-                setVisible(false);
+
+                if ((textField.isEditable() == false) && (rdbtnShortTerm.isSelected() || rdbtnShortTerm.isSelected())) {
+                    ResultWindow result = new ResultWindow();
+                    result.setVisible(true);
+                    setVisible(false);
+                    String symbol = getStockSymbol();
+                    System.out.println(getStockSymbol());
+                    System.out.println(getInvestTerm());
+                    ResultGenerator generator = new ResultGenerator();
+                    generator.calculation(symbol);
+                }
+                else {
+                    JOptionPane continueOption = new JOptionPane();
+                    
+                    if (textField.isEditable() == true) {
+                        continueOption.showMessageDialog(continueOption, "Please complete Step 1: Enter and confirm the Ticker information.", "Reminder", 1);
+                    }
+                    if (!rdbtnLongTerm.isSelected() && !rdbtnShortTerm.isSelected()) {
+                        continueOption.showMessageDialog(continueOption, "Please complete Step 2: Select the investment horizon.", "Reminder", 1);
+                    }
+                }
+
             }
         });
         btnContinue.setBackground(Color.LIGHT_GRAY);
         btnContinue.setFont(new Font("Tahoma", Font.PLAIN, 12));
         btnContinue.setBounds(245, 31, 89, 23);
         panelStep3.add(btnContinue);
+        
+    }
+
+    public static String getStockSymbol() {
+        return textField.getText();
+    }
+    
+    public static String getInvestTerm() {
+        String term = "";
+        if (rdbtnShortTerm.isSelected()) {
+            term = "S";
+        }
+        else {
+            term = "L";
+        }
+        
+        return term;
     }
 }
