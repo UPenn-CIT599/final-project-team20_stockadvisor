@@ -39,18 +39,18 @@ public class SPYBenchmark {
 		}
 		
         TimeSeries series = TimeSeries.from(prices);
-        ArimaOrder modelOrder = ArimaOrder.order(0, 1, 1, 0, 1, 1); // Note that intercept fitting will automatically be turned off
+        ArimaOrder modelOrder = ArimaOrder.order(3, 1, 2, 3, 1, 2); // Note that intercept fitting will automatically be turned off
         
         Arima model = Arima.model(series, modelOrder); //feed timeseries and modelOrder into ARIMA model
         
-        Forecast forecast = model.forecast(12); //To specify the alpha significance level, add it as a second argument.
+        Forecast forecast = model.forecast(21); //To specify the alpha significance level, add it as a second argument.
         //hard coded for next 12 trading days
-        plot(forecast.pointEstimates(), "Price Change");
+        plot(forecast.pointEstimates(), ticker + " Predicted Price");
         
         TimeSeries FP = forecast.pointEstimates();
         
         double[] fprices = FP.asArray();
-        System.out.println(Arrays.toString(fprices));
+//        System.out.println(Arrays.toString(fprices));
         
         //find the slope
         Point p1 = new Point(1,fprices[0]);
