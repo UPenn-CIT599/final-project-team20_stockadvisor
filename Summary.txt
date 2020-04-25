@@ -11,7 +11,7 @@ We first ask the user about his/her stock of interest and the investment horizon
 
 3.Work breakdown
 User Interface Design and Yahoo Finance Data Reader —Chenming Cao;
-Time Series Analysis Algorithm Design, Yahoo Finance Data Reader, Final Result Statement Design —Boyu Wu;
+Project Design, Time Series Analysis Algorithm Design, Yahoo Finance Data Reader, Final Result Statement Design —Boyu Wu;
 Results Processing, Validation and Visualization, also Make Demo Video —Liangen Hu.
 
 4.Link to github repository
