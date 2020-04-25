@@ -45,7 +45,7 @@ public class SPYBenchmark {
         
         Forecast forecast = model.forecast(21); //To specify the alpha significance level, add it as a second argument.
         //hard coded for next 12 trading days
-        plot(forecast.pointEstimates(), ticker + " Predicted Price");
+        plot(forecast.pointEstimates(), ticker.toUpperCase() + " Predicted Price");
         
         TimeSeries FP = forecast.pointEstimates();
         

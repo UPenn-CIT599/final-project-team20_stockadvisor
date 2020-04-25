@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 public class ResultWindow extends JFrame {
 
     private JPanel contentPane;
+    private JTextPane txtpnMsg;
 
     /**
      * Create the frame.
@@ -33,7 +34,7 @@ public class ResultWindow extends JFrame {
         contentPane.setLayout(null);
         
         JLabel lblNewLabel = new JLabel("New label");
-        lblNewLabel.setIcon(new ImageIcon(ResultWindow.class.getResource("/images/blue-and-yellow-graph-on-stock-market-monitor-159888.jpg")));
+        lblNewLabel.setIcon(new ImageIcon(ResultWindow.class.getResource("/images/Picture3.jpg")));
         lblNewLabel.setBounds(0, 0, 577, 166);
         contentPane.add(lblNewLabel);
         
@@ -45,13 +46,20 @@ public class ResultWindow extends JFrame {
         
         JTextPane txtpnInvestmentRecommendation = new JTextPane();
         txtpnInvestmentRecommendation.setEditable(false);
-        txtpnInvestmentRecommendation.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+        txtpnInvestmentRecommendation.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
         txtpnInvestmentRecommendation.setText("Investment Recommendation for you:");
-        txtpnInvestmentRecommendation.setBounds(10, 11, 393, 41);
+        txtpnInvestmentRecommendation.setBounds(79, 11, 473, 41);
         panel.add(txtpnInvestmentRecommendation);
         
-        JTextPane textPane = new JTextPane();
-        textPane.setBounds(10, 63, 604, 154);
-        panel.add(textPane);
+        txtpnMsg = new JTextPane();
+        txtpnMsg.setFont(new Font("Tahoma", Font.BOLD, 18));
+        txtpnMsg.setBounds(79, 84, 468, 102);
+        panel.add(txtpnMsg);
     }
+
+    public JTextPane getTxtpnMsg() {
+        return txtpnMsg;
+    }
+    
+    
 }

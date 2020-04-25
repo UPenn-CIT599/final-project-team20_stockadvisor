@@ -39,6 +39,7 @@ public class ParametersWindow extends JFrame {
      * Create the frame.
      */
     public ParametersWindow() {
+        
         setTitle("Stock Advisor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 640, 455);
@@ -174,15 +175,17 @@ public class ParametersWindow extends JFrame {
         btnContinue.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                if ((textField.isEditable() == false) && (rdbtnShortTerm.isSelected() || rdbtnShortTerm.isSelected())) {
+                if ((textField.isEditable() == false) && (rdbtnLongTerm.isSelected() || rdbtnShortTerm.isSelected())) {
                     ResultWindow result = new ResultWindow();
                     result.setVisible(true);
                     setVisible(false);
                     String symbol = getStockSymbol();
-                    System.out.println(getStockSymbol());
-                    System.out.println(getInvestTerm());
+                    String term = getInvestTerm();
+//                    System.out.println(getStockSymbol());
+//                    System.out.println(getInvestTerm());
                     ResultGenerator generator = new ResultGenerator();
-                    generator.calculation(symbol);
+                    String recommedation = generator.process(symbol);
+                    result.getTxtpnMsg().setText(recommedation);
                 }
                 else {
                     JOptionPane continueOption = new JOptionPane();
@@ -197,6 +200,7 @@ public class ParametersWindow extends JFrame {
 
             }
         });
+        
         btnContinue.setBackground(Color.LIGHT_GRAY);
         btnContinue.setFont(new Font("Tahoma", Font.PLAIN, 12));
         btnContinue.setBounds(245, 31, 89, 23);
@@ -216,7 +220,6 @@ public class ParametersWindow extends JFrame {
         else {
             term = "L";
         }
-        
         return term;
     }
 }
