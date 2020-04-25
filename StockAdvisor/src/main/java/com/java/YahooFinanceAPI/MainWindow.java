@@ -44,6 +44,7 @@ public class MainWindow extends JFrame {
      * Create the frame.
      */
     public MainWindow() {
+        
         setTitle("Stock Advisor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 640, 455);
@@ -79,7 +80,7 @@ public class MainWindow extends JFrame {
         
         JTextPane txtpnAuthors = new JTextPane();
         txtpnAuthors.setEditable(false);
-        txtpnAuthors.setText("© Boyu Wu, Liangen Hu, Chenming Cao");
+        txtpnAuthors.setText("© Team 20: Boyu Wu, Liangen Hu, Chenming Cao");
         txtpnAuthors.setBounds(10, 245, 287, 33);
         contentPane.add(txtpnAuthors);
         
@@ -89,6 +90,7 @@ public class MainWindow extends JFrame {
         txtpnTitle.setText("A Stock Investment Advisor by Time Series Trend Analysis");
         txtpnTitle.setBounds(10, 43, 287, 224);
         contentPane.add(txtpnTitle);
+        
     }
 
     
