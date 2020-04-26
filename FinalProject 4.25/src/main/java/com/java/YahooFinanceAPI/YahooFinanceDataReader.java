@@ -12,18 +12,8 @@ import yahoofinance.histquotes.Interval;
  * stores for further analysis
  */
 public class YahooFinanceDataReader {
-//    private ArrayList<Double> historicalPrices;
-//    private double[] historicalPrices;
-//    private UserInput in;
-    private String stockName;
 
-    /**
-     * Constructs the data reader to pull stock data from Yahoo Finance
-     */
-    public YahooFinanceDataReader() {
-//        historicalPrices = new ArrayList<Double>();
-//        stockName = in.readStockTickerSymbol();
-    }
+    private String stockName;
 
     /**
      * This method gets the stock object based on the symbol for data extraction
@@ -84,22 +74,6 @@ public class YahooFinanceDataReader {
         }
         return closePrices;
     }
+    
 
-    /**
-     * This method gets the historicalPrices ArrayList used for data analysis
-     * 
-     * @return historicalPrices ArrayList
-     * @throws IOException 
-     */
-//    public ArrayList<Double> getHistoricalPrices() {
-//        return historicalPrices;
-//    }
-
-    public static void main(String[] args) throws IOException {
-        YahooFinanceDataReader reader = new YahooFinanceDataReader();
-        reader.getStock("OK");
-        double[] prices = reader.generatePriceList(180);
-        System.out.println(Arrays.toString(prices));
-        
-    }
 }

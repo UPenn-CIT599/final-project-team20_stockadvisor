@@ -8,12 +8,10 @@ import com.github.signaflo.timeseries.model.arima.ArimaOrder;
 import static com.github.signaflo.data.visualization.Plots.plot;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-/*
+/**
  * The 'SPYBenchmark' class achieves two main purposes - 
- * 1. Run ARIMA model on SPY (SPDR S&P 500 ETF Trust) to predict the future price trend of next 12 trading days;
+ * 1. Run ARIMA model on SPY (SPDR S&P 500 ETF Trust) to predict the future price trend of next 21 trading days;
  * 2. Find the slope of the trend (linear regression) and set as a benchmark. 
  */
 
@@ -41,10 +39,10 @@ public class SPYBenchmark {
         TimeSeries series = TimeSeries.from(prices);
         ArimaOrder modelOrder = ArimaOrder.order(3, 1, 2, 3, 1, 2); // Note that intercept fitting will automatically be turned off
         
-        Arima model = Arima.model(series, modelOrder); //feed timeseries and modelOrder into ARIMA model
+        Arima model = Arima.model(series, modelOrder); //feed time series and modelOrder into ARIMA model
         
         Forecast forecast = model.forecast(21); //To specify the alpha significance level, add it as a second argument.
-        //hard coded for next 12 trading days
+        //hard coded for next 21 trading days
         plot(forecast.pointEstimates(), ticker.toUpperCase() + " Predicted Price");
         
         TimeSeries FP = forecast.pointEstimates();
