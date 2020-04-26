@@ -18,22 +18,22 @@ public class ParametersWindow extends JFrame {
     private static JRadioButton rdbtnShortTerm;
     private static JRadioButton rdbtnLongTerm;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    ParametersWindow frame = new ParametersWindow();
-                    frame.setVisible(true);
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+//    /**
+//     * Launch the application.
+//     */
+//    public static void main(String[] args) {
+//        EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    ParametersWindow frame = new ParametersWindow();
+//                    frame.setVisible(true);
+//                }
+//                catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//    }
 
     /**
      * Create the frame.
@@ -95,33 +95,33 @@ public class ParametersWindow extends JFrame {
                 try {
                     stock = reader.getStock(stockTicker);
                     if (stock == null) {
-                        tickerOption.showMessageDialog(tickerOption,
+                        JOptionPane.showMessageDialog(tickerOption,
                                 "Stock/ETF Ticker is invalid. Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Error", 0);
                     }
                     else if (stock.isValid()) {
                         String name = stock.getName();
-                        int answer = tickerOption.showConfirmDialog(tickerOption,
+                        int answer = JOptionPane.showConfirmDialog(tickerOption,
                                 "You have entered the ticker for \"" + name
                                         + "\". Is that correct?",
-                                "Please confirm your selection", tickerOption.YES_NO_OPTION);
+                                "Please confirm your selection", JOptionPane.YES_NO_OPTION);
                         if (answer == 0) {
                             textField.setEditable(false);
-                            boolean tickerField = false;
+//                            boolean tickerField = false;
                         }
                         else {
                             textField.setText("");
-                            tickerOption.showMessageDialog(tickerOption,
+                            JOptionPane.showMessageDialog(tickerOption,
                                     "Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Reminder", 1);
                         }
                     }
                     else {
-                        tickerOption.showMessageDialog(tickerOption,
+                        JOptionPane.showMessageDialog(tickerOption,
                                 "Stock/ETF Ticker is invalid. Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Error", 0);
                     }
 
                 }
                 catch (IOException e1) {
-                    tickerOption.showMessageDialog(tickerOption,
+                    JOptionPane.showMessageDialog(tickerOption,
                             "Stock/ETF Ticker is invalid. Please try again! You can go to https://finance.yahoo.com/ to search the ticker.", "Error", 0);
                 }
             }
@@ -191,10 +191,10 @@ public class ParametersWindow extends JFrame {
                     JOptionPane continueOption = new JOptionPane();
                     
                     if (textField.isEditable() == true) {
-                        continueOption.showMessageDialog(continueOption, "Please complete Step 1: Enter and confirm the Ticker information.", "Reminder", 1);
+                        JOptionPane.showMessageDialog(continueOption, "Please complete Step 1: Enter and confirm the Ticker information.", "Reminder", 1);
                     }
                     if (!rdbtnLongTerm.isSelected() && !rdbtnShortTerm.isSelected()) {
-                        continueOption.showMessageDialog(continueOption, "Please complete Step 2: Select the investment horizon.", "Reminder", 1);
+                        JOptionPane.showMessageDialog(continueOption, "Please complete Step 2: Select the investment horizon.", "Reminder", 1);
                     }
                 }
 

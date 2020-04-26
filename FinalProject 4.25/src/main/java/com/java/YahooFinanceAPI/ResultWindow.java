@@ -1,19 +1,8 @@
 package com.java.YahooFinanceAPI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import javax.swing.JTextPane;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import java.awt.*;
 
 public class ResultWindow extends JFrame {
 
@@ -26,7 +15,7 @@ public class ResultWindow extends JFrame {
     public ResultWindow() {
         setTitle("Real Time API Robo-Advisor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 639, 800);
+        setBounds(1000, 100, 540, 650);
         contentPane = new JPanel();
         contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -52,8 +41,8 @@ public class ResultWindow extends JFrame {
         panel.add(txtpnInvestmentRecommendation);
         
         txtpnMsg = new JTextPane();
-        txtpnMsg.setFont(new Font("Tahoma", Font.BOLD, 12));
-        txtpnMsg.setBounds(10, 43, 604, 519);
+        txtpnMsg.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        txtpnMsg.setBounds(10, 55, 504, 620);
         panel.add(txtpnMsg);
     }
 
