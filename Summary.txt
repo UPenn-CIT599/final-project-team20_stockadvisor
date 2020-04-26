@@ -5,9 +5,9 @@ A Stock Investment Advisor by Time Series Trend Analysis
 Chenming Cao, Boyu Wu, Liangen Hu
 
 2.Project description
-We build a stock investment advisor by performing time series analysis of user selected stock and providing the user with the short-term or long-term investment suggestion (overweight or underweight). 
+We built a real time API multi-asset robo-advisor by performing time series analysis autoregressive integrated moving average (ARIMA) of user selected security (stocks, etfs) and providing the user with the short-term or long-term investment suggestion (overweight or underweight). 
 
-We first ask the user about his/her stock of interest and the investment horizon through a user interface, search the Yahoo Finance stock API data, and extract, clean and store the related stock data for further time series analysis. We then design and implement the time series analysis algorithm-auto regressive integrated moving average (ARIMA) analysis to generate predicted stock prices. Finally, we generate visualization results for stock trend prediction according to the time series analysis results and provide the user with investment suggestion.
+We first ask the user about his/her target stock/ETF and the investment horizon through a user interface, search the Yahoo Finance stock API data, and extract, clean and store the related stock data for further time series analysis. We then design and implement the time series analysis algorithm-auto regressive integrated moving average (ARIMA) analysis to generate predicted stock prices. Finally, we generate visualization results for stock trend prediction according to the time series analysis results and provide the user with investment suggestion.
 
 3.Work breakdown
 User Interface Design and Yahoo Finance Data Reader —Chenming Cao;
