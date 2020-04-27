@@ -2,6 +2,9 @@ package com.java.YahooFinanceAPI;
 
 import java.awt.EventQueue;
 
+/**
+ * This class runs the App
+ */
 public class AppRunner {
 
     public static void main(String[] args) {

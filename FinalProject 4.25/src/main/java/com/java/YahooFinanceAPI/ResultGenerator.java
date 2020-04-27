@@ -1,11 +1,23 @@
 package com.java.YahooFinanceAPI;
 
+/**
+ * This class generates the investment statement which will show up in the
+ * result window.
+ */
 public class ResultGenerator {
 
+    /**
+     * This method generates the investment statement
+     * 
+     * @param tickerInput User input ticker
+     * @param term        String converted from the user selection, "S" is
+     *                    short-term, "L" is long-term.
+     * @return String of the investment statement
+     */
     public String process(String tickerInput, String term) {
 
         SPYBenchmark m = new SPYBenchmark();
-        
+
         double benchmarkSlope = m.getBenchmark("SPY");
         double clientSlope = m.getBenchmark(tickerInput);
 
