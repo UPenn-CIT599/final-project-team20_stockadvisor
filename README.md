@@ -9,6 +9,7 @@ Here we have built a real time API multi-asset robo-advisor by performing time s
 
 This project is built using a maven project and using 3 APIs.
 YahooFinanceAPI is used for getting real-time asset data from YahooFinance. 
+
 <dependency>
     <groupId>com.yahoofinance-api</groupId>
     <artifactId>YahooFinanceAPI</artifactId>
@@ -16,6 +17,7 @@ YahooFinanceAPI is used for getting real-time asset data from YahooFinance.
 </dependency>
 
 Timeseries is used for getting the statistical analysis tools and helping with our ARIMA analysis.
+
 <dependency>
     <groupId>com.github.signaflo</groupId>
     <artifactId>timeseries</artifactId>
@@ -23,6 +25,7 @@ Timeseries is used for getting the statistical analysis tools and helping with o
 </dependency>
 
 Assertj is used for JUnit test for swing GUI components.
+
 <dependency>
   <groupId>org.assertj</groupId>
   <artifactId>assertj-swing-junit</artifactId>
