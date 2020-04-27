@@ -14,13 +14,14 @@ import org.junit.Test;
 public class ParametersWindowStepOneTest extends AssertJSwingJUnitTestCase {
 
     private FrameFixture window;
-    
+
     /**
-     * This test checks the case when entering a valid ticker and then selecting a "No".
+     * This test checks the case when entering a valid ticker and then selecting a
+     * "No".
      */
     @Test
     public void validTickerCancel() {
-        
+
         JTextComponentFixture textbox = window.textBox("Ticker Field");
         textbox.requireVisible().requireEnabled().requireEditable();
 
@@ -37,7 +38,8 @@ public class ParametersWindowStepOneTest extends AssertJSwingJUnitTestCase {
     }
 
     /**
-     * This test checks the case when entering a valid ticker and then selecting a "Yes".
+     * This test checks the case when entering a valid ticker and then selecting a
+     * "Yes".
      */
     @Test
     public void validTickerConfirm() {
@@ -56,7 +58,7 @@ public class ParametersWindowStepOneTest extends AssertJSwingJUnitTestCase {
         textbox.requireText("AAPL");
         textbox.requireNotEditable();
     }
-    
+
     /**
      * This test checks the case when entering an invalid ticker.
      */
@@ -74,7 +76,7 @@ public class ParametersWindowStepOneTest extends AssertJSwingJUnitTestCase {
         JOptionPaneFixture option = window.optionPane();
         option.requireErrorMessage();
         option.okButton().click();
-        
+
         textbox.requireText("");
         textbox.requireEditable();
 
@@ -94,12 +96,15 @@ public class ParametersWindowStepOneTest extends AssertJSwingJUnitTestCase {
         JOptionPaneFixture option = window.optionPane();
         option.requireErrorMessage();
         option.okButton().click();
-        
+
         textbox.requireText("");
         textbox.requireEditable();
 
     }
 
+    /**
+     * This default method sets up the window for JUnit testing.
+     */
     @Override
     protected void onSetUp() {
         ParametersWindow frame = GuiActionRunner.execute(() -> new ParametersWindow());
@@ -108,7 +113,10 @@ public class ParametersWindowStepOneTest extends AssertJSwingJUnitTestCase {
         window.resizeHeightTo(455);
         window.resizeWidthTo(640);
     }
-    
+
+    /**
+     * This default method closes the window and does the cleanup after the testing.
+     */
     @Override
     protected void onTearDown() {
         super.onTearDown();

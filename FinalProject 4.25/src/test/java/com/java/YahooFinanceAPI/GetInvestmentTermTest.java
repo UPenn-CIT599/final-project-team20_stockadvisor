@@ -8,33 +8,40 @@ import org.assertj.swing.fixture.JRadioButtonFixture;
 import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
 import org.junit.Test;
 
+/**
+ * This class tests whether it can read the investment horizon information from
+ * the radio button
+ */
 public class GetInvestmentTermTest extends AssertJSwingJUnitTestCase {
 
-private FrameFixture window;
-    
+    private FrameFixture window;
+
     /**
-     * This test checks the function of radio buttons.
+     * This test checks whether it can read the investment horizon information from
+     * the radio button
      */
     @Test
     public void getInvestmentTermTest() {
-        
+
         JRadioButtonFixture button1 = window.radioButton("Short Term");
         button1.requireVisible().requireEnabled();
 
         JRadioButtonFixture button2 = window.radioButton("Long Term");
         button2.requireVisible().requireEnabled();
-        
+
         button1.click();
         String term = ParametersWindow.getInvestTerm();
-        assertEquals(term, "S");
-        
+        assertEquals("S", term);
+
         button2.click();
         term = ParametersWindow.getInvestTerm();
-        assertEquals(term, "L");
-        
+        assertEquals("L", term);
+
     }
 
-
+    /**
+     * This default method sets up the window for JUnit testing.
+     */
     @Override
     protected void onSetUp() {
         ParametersWindow frame = GuiActionRunner.execute(() -> new ParametersWindow());
@@ -43,12 +50,14 @@ private FrameFixture window;
         window.resizeHeightTo(455);
         window.resizeWidthTo(640);
     }
-    
+
+    /**
+     * This default method closes the window and does the cleanup after the testing.
+     */
     @Override
     protected void onTearDown() {
         super.onTearDown();
         window.cleanUp();
     }
-
 
 }

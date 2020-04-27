@@ -10,19 +10,24 @@ import org.assertj.swing.fixture.JTextComponentFixture;
 import org.assertj.swing.junit.testcase.AssertJSwingJUnitTestCase;
 import org.junit.Test;
 
+/**
+ * This class tests whether it can read the ticker information from the text
+ * field
+ */
 public class GetStockTickerTest extends AssertJSwingJUnitTestCase {
 
-private FrameFixture window;
-    
+    private FrameFixture window;
+
     /**
-     * This test checks the function of radio buttons.
+     * This test checks whether it can read the ticker information from the text
+     * field
      */
     @Test
     public void getInvestmentTermTest() {
-        
+
         String symbol = ParametersWindow.getStockSymbol();
         assertEquals(symbol, "");
-        
+
         JTextComponentFixture textbox = window.textBox("Ticker Field");
         textbox.requireVisible().requireEnabled().requireEditable();
 
@@ -33,13 +38,15 @@ private FrameFixture window;
         button.requireVisible().requireEnabled().click();
         JOptionPaneFixture option = window.optionPane();
         option.yesButton().click();
-        
+
         symbol = ParametersWindow.getStockSymbol();
-        assertEquals(symbol, "AAPL");
-        
+        assertEquals("AAPL", symbol);
+
     }
 
-
+    /**
+     * This default method sets up the window for JUnit testing.
+     */
     @Override
     protected void onSetUp() {
         ParametersWindow frame = GuiActionRunner.execute(() -> new ParametersWindow());
@@ -48,7 +55,10 @@ private FrameFixture window;
         window.resizeHeightTo(455);
         window.resizeWidthTo(640);
     }
-    
+
+    /**
+     * This default method closes the window and does the cleanup after the testing.
+     */
     @Override
     protected void onTearDown() {
         super.onTearDown();

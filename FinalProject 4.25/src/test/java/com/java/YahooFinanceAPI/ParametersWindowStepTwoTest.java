@@ -11,31 +11,34 @@ import org.junit.Test;
  */
 public class ParametersWindowStepTwoTest extends AssertJSwingJUnitTestCase {
 
-private FrameFixture window;
-    
+    private FrameFixture window;
+
     /**
-     * This test checks the function of radio buttons.
+     * This test checks the function of radio buttons. Only one button could be
+     * selected at one time.
      */
     @Test
     public void verifyRadioButtons() {
-        
+
         JRadioButtonFixture button1 = window.radioButton("Short Term");
         button1.requireVisible().requireEnabled();
 
         JRadioButtonFixture button2 = window.radioButton("Long Term");
         button2.requireVisible().requireEnabled();
-        
+
         button1.click();
         button1.requireSelected();
         button2.requireSelected(false);
-        
+
         button2.click();
         button1.requireSelected(false);
         button2.requireSelected();
-        
+
     }
 
-
+    /**
+     * This default method sets up the window for JUnit testing.
+     */
     @Override
     protected void onSetUp() {
         ParametersWindow frame = GuiActionRunner.execute(() -> new ParametersWindow());
@@ -44,13 +47,14 @@ private FrameFixture window;
         window.resizeHeightTo(455);
         window.resizeWidthTo(640);
     }
-    
+
+    /**
+     * This default method closes the window and does the cleanup after the testing.
+     */
     @Override
     protected void onTearDown() {
         super.onTearDown();
         window.cleanUp();
     }
-
-
 
 }
